@@ -14,5 +14,3 @@ export const LoaderWrapper = styled.div`
   height: 100vh;
   background-color: rgba(185, 228, 201, 0.2);
 `;
-
-

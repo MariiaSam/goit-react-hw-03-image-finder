@@ -19,7 +19,7 @@ export class App extends Component {
     isLoading: false,
     showModal: false,
     largeImage: '',
-    LoadMore: false,
+    loadMore: false,
   };
 
   async componentDidUpdate(_, prevState) {
@@ -55,24 +55,23 @@ export class App extends Component {
         this.setState({
           gallery: [],
           error: 'Invalid input. Please enter a valid value.',
-          isLoading: false,
         });
         return;
       }
 
       this.setState(prevState => ({
         gallery: [...prevState.gallery, ...hits],
-        LoadMore: this.state.page < Math.ceil(totalHits / 12),
+        loadMore: this.state.page < Math.ceil(totalHits / 12),
         error: null,
-        isLoading: false,
       }));
     } catch (error) {
       console.log(error);
       this.setState({
         gallery: [],
-        error: 'Mess',
-        isLoading: false,
+        error: 'Message Err',
       });
+    } finally {
+      this.setState({ isLoading: false });
     }
   };
 
@@ -80,11 +79,9 @@ export class App extends Component {
     this.setState(({ page }) => ({ page: page + 1 }));
   };
 
-  onOpenModal = evt => {
-    const { image } = evt.target.dataset;
-    if (image) {
-      console.log(image);
-      this.setState({ largeImage: image });
+  onOpenModal = largeImage => {
+    if (largeImage) {
+      this.setState({ largeImage });
       this.toggleModal();
     }
   };
@@ -96,7 +93,7 @@ export class App extends Component {
   };
 
   render() {
-    const { isLoading, showModal, largeImage, gallery, error, LoadMore } =
+    const { isLoading, showModal, largeImage, gallery, error, loadMore } =
       this.state;
 
     return (
@@ -104,15 +101,9 @@ export class App extends Component {
         <SearchBar onSubmit={this.handleSearch} />
         <ImageGallery galleryImg={gallery} onClick={this.onOpenModal} />
         {isLoading && <Loader />}
-        {showModal && (
-          <Modal
-            onClick={this.toggleModal}
-            onClose={this.toggleModal}
-            url={largeImage}
-          />
-        )}
+        {showModal && <Modal onClick={this.toggleModal} url={largeImage} />}
         {error !== null ? <div>{error}</div> : null}
-        {LoadMore ? <Button onLoadMore={this.onLoadMoreImage} /> : null}
+        {loadMore && <Button onLoadMore={this.onLoadMoreImage} />}
       </StyledApp>
     );
   }

@@ -1,39 +1,40 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { CiSearch } from 'react-icons/ci';
 
-import { Header, SearchForm, SearchFormBtn, SearchFormInput, SearchFormBtnLabel} from './Searchbar.styled';
+import {
+  Header,
+  SearchForm,
+  SearchFormBtn,
+  SearchFormInput,
+} from './Searchbar.styled';
 
 export class SearchBar extends Component {
   state = {
     value: '',
   };
 
-
-  // при зміні значення у введенні. оновлює стан компонента, зберігаючи нове значення введеного тексту
-
-hanlerChange = ({ target }) => {
-this.setState({
-value: target.value
-})
-}
-
+  hanlerChange = ({ target }) => {
+    this.setState({
+      value: target.value,
+    });
+  };
 
   handleSubmit = evt => {
-    evt.preventDefault()
+    evt.preventDefault();
 
-    this.props.onSubmit(this.state.value)
-    this.setState({ value: '' })
-}
+    this.props.onSubmit(this.state.value);
+    this.setState({ value: '' });
+  };
 
   render() {
-    const { value } = this.state
+    const { value } = this.state;
     return (
       <Header>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchFormBtn type="submit">
-            <SearchFormBtnLabel>Search</SearchFormBtnLabel>
+            <CiSearch size="24" />
           </SearchFormBtn>
-
           <SearchFormInput
             type="text"
             autoComplete="off"

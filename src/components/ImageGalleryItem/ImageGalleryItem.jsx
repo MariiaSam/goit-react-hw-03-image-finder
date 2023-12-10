@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import { GalleryItem, Img } from './ImageGalleryItem.styled';
 
-
-export const ImageGalleryItem = ({ url, tags, id, modalUrl, onClick} ) => {
+export const ImageGalleryItem = ({ url, tags, id, modalUrl, onClick }) => {
   const handleClick = () => {
     onClick(modalUrl);
   };
 
   return (
-    <GalleryItem key={id}>
-      <Img src={url} alt={tags} data-image={modalUrl} onClick={handleClick} />
+    <GalleryItem key={id} onClick={handleClick}>
+      <Img src={url} alt={tags} />
     </GalleryItem>
   );
 };

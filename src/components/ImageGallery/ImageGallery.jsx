@@ -19,7 +19,6 @@ export const ImageGallery = ({ galleryImg, onClick }) => {
     )
 }
 
-
 ImageGallery.propTypes = {
     galleryImg: PropTypes.arrayOf(
       PropTypes.shape({
