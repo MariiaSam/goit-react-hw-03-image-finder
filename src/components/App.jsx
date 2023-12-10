@@ -60,7 +60,6 @@ export class App extends Component {
         return;
       }
 
-
       this.setState(prevState => ({
         gallery: [...prevState.gallery, ...hits],
         LoadMore: this.state.page < Math.ceil(totalHits / 12),
@@ -83,9 +82,10 @@ export class App extends Component {
 
   onOpenModal = evt => {
     const { image } = evt.target.dataset;
-    if(image) {
-    this.setState({ largeImage: image });
-    this.toggleModal();
+    if (image) {
+      console.log(image);
+      this.setState({ largeImage: image });
+      this.toggleModal();
     }
   };
 
@@ -102,6 +102,7 @@ export class App extends Component {
     return (
       <StyledApp>
         <SearchBar onSubmit={this.handleSearch} />
+        <ImageGallery galleryImg={gallery} onClick={this.onOpenModal} />
         {isLoading && <Loader />}
         {showModal && (
           <Modal
@@ -111,8 +112,7 @@ export class App extends Component {
           />
         )}
         {error !== null ? <div>{error}</div> : null}
-        <ImageGallery galleryImg={gallery} onClick={this.onOpenModal} />
-        {LoadMore ? <Button onLoadMore={this.onLoadMoreImage} />: null}
+        {LoadMore ? <Button onLoadMore={this.onLoadMoreImage} /> : null}
       </StyledApp>
     );
   }
