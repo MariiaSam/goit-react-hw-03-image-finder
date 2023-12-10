@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { Component } from 'react';
 import { ModalBackdrop, ModalContent, Img} from './Modal.styled';
 
-f
 const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
