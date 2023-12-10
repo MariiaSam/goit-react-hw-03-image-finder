@@ -83,8 +83,11 @@ export class App extends Component {
 
   onOpenModal = evt => {
     const { image } = evt.target.dataset;
+    if(image) {
+    
     this.setState({ largeImage: image });
     this.toggleModal();
+    }
   };
 
   toggleModal = () => {
