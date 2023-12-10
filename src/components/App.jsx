@@ -84,7 +84,6 @@ export class App extends Component {
   onOpenModal = evt => {
     const { image } = evt.target.dataset;
     if(image) {
-    
     this.setState({ largeImage: image });
     this.toggleModal();
     }
@@ -113,7 +112,7 @@ export class App extends Component {
         )}
         {error !== null ? <div>{error}</div> : null}
         <ImageGallery galleryImg={gallery} onClick={this.onOpenModal} />
-        {LoadMore && <Button onLoadMore={this.onLoadMoreImage} />}
+        {LoadMore ? <Button onLoadMore={this.onLoadMoreImage} />: null}
       </StyledApp>
     );
   }
