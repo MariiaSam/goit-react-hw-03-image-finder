@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
-import { Gallery, GalleryItem } from './ImageGallery.styled';
+import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
+import { Gallery } from './ImageGallery.styled';
 
 
-export const ImageGallery =({ galleryImg }) => {
+export const ImageGallery =({ galleryImg, onClick}) => {
  return (
- <Gallery>
-    {galleryImg.map((item)=> (
-        <GalleryItem
-        key={item.id}
-        tags={item.tags}
-        webformatURL={item.webformatURL}
-        largeImageURL={item.largeImageURL}
+ <Gallery onClick={onClick} >
+    {galleryImg.map(({ id, webformatURL, largeImageURL, tags } )=> (
+        <ImageGalleryItem
+        key={id}
+        tags={tags}
+        url={webformatURL}
+        modalUrl={largeImageURL}
         >
-        </GalleryItem>
+        </ImageGalleryItem>
     ))}
 
 </Gallery>

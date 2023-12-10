@@ -14,5 +14,4 @@ export const Gallery = styled.ul`
 `;
 
 export const GalleryItem =styled.li`
-flex-basis: calc(100% - 8px) /3;
 `

@@ -36,8 +36,8 @@ value: target.value
 
           <SearchFormInput
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             value={value}
             onChange={this.hanlerChange}
