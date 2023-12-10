@@ -3,23 +3,21 @@ import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 import { Gallery } from './ImageGallery.styled';
 
 
-export const ImageGallery =({ galleryImg, onClick}) => {
- return (
- <Gallery >
-    {galleryImg.map(({ id, webformatURL, largeImageURL, tags } )=> (
+export const ImageGallery = ({ galleryImg, onClick }) => {
+  return (
+    <Gallery>
+      {galleryImg.map(({ id, webformatURL, largeImageURL, tags }) => (
         <ImageGalleryItem
-        key={id}
-        url={webformatURL}
-        tags={tags}
-        modalUrl={largeImageURL}
-        onClick={onClick}
-        >
-        </ImageGalleryItem>
-    ))}
-
-</Gallery>
-    )
-}
+          key={id}
+          url={webformatURL}
+          tags={tags}
+          modalUrl={largeImageURL}
+          onClick={onClick}
+        />
+      ))}
+    </Gallery>
+  );
+};
 
 
 ImageGallery.propTypes = {
