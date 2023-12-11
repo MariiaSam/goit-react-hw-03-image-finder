@@ -12,14 +12,14 @@ import { Button } from './Button/Button';
 
 export class App extends Component {
   state = {
-    query: '',
+    query: '', //Зберігає поточний запит для пошуку.
     gallery: [],
     page: 1,
     error: null,
-    isLoading: false,
+    isLoading: false,//Вказує, чи в даний момент відбувається завантаження зображень.
     showModal: false,
     largeImage: '',
-    loadMore: false,
+    loadMore: false,//Вказує, чи є ще зображення для завантаження
   };
 
   async componentDidUpdate(_, prevState) {
@@ -29,7 +29,8 @@ export class App extends Component {
       const prevPage = prevState.page;
 
       if (query !== prevQuery || page !== prevPage) {
-        await this.createImgGallery();
+        await this.createImgGallery();//Якщо відбулася зміна, він викликає метод createImgGallery.
+
       }
     } catch (error) {
       console.log(error);
@@ -88,7 +89,7 @@ export class App extends Component {
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({
-      showModal: !showModal,
+      showModal: !showModal, //Змінює стан showModal між true і false
     }));
   };
 
@@ -108,3 +109,47 @@ export class App extends Component {
     );
   }
 }
+
+
+//query: Зберігає поточний запит для пошуку.
+// gallery: Зберігає масив отриманих зображень від API.
+// page: Визначає поточну сторінку результатів.
+// error: Містить повідомлення про помилку, пов'язану з пошуком.
+// isLoading: Вказує, чи в даний момент відбувається завантаження зображень.
+// showModal: Відповідає за видимість модального вікна.
+// largeImage: Містить URL великого зображення для відображення в модальному вікні.
+// loadMore: Вказує, чи є ще зображення для завантаження.
+
+
+//componentDidUpdate
+// Цей метод життєвого циклу викликається кожного разу, коли компонент оновлюється.
+// Він порівнює поточні значення query і page з попередніми значеннями.
+// Якщо відбулася зміна, він викликає метод createImgGallery.
+
+
+//handleSearch:
+// Скидає стан при новому запиті.
+// Очищає поточний gallery, скидає page на 1 та оновлює query
+
+//createImgGallery:
+// Встановлює isLoading в true перед отриманням зображень.
+// Отримує зображення за допомогою функції getImages.
+// Якщо зображення не отримані, встановлює повідомлення про помилку.
+// Додає нові зображення до існуючого gallery.
+// Визначає, чи є ще сторінки для завантаження (loadMore).
+// Відловлює будь-які помилки під час процесу і встановлює повідомлення про помилку.
+// У блоку finally встановлює isLoading в false після завершення операції.
+
+
+//onLoadMoreImage:
+//Збільшує значення page, коли натискається кнопка "Завантажити ще".
+
+
+//onOpenModal:
+// Відкриває модальне вікно з вказаним URL largeImage.
+// Викликає toggleModal для оновлення стану showModal.
+
+
+//toggleModal
+
+//Метод рендеру:
