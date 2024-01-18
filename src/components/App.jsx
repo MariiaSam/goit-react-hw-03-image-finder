@@ -52,6 +52,8 @@ export class App extends Component {
     try {
       const { hits, totalHits } = await getImages(query, page);
 
+      console.log(totalHits)
+
       if (hits.length === 0) {
         this.setState({
           gallery: [],
